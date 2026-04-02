@@ -1,0 +1,89 @@
+/* popup.css */
+body {
+  width: 320px; /* Standard width for a clean popup */
+  margin: 0;
+  padding: 15px;
+  background-color: #222;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  text-align: center;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  color: #f44336; /* Matching the red from your blocked page */
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.site-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Make the checkboxes and labels look clickable and neat */
+label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #333;
+  transition: background-color 0.2s ease;
+}
+
+label:hover {
+  background-color: #444;
+}
+
+input[type="checkbox"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  accent-color: #f44336; /* Makes the checkbox red when checked */
+  cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #333;
+  margin: 20px 0;
+}
+
+/* Stats Section Styling */
+#stats {
+  background-color: #333;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #f44336;
+}
+
+#stats h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #f44336;
+}
+
+#stats ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#stats li {
+  font-size: 0.9em;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+#stats li:last-child {
+  margin-bottom: 0;
+}

@@ -3,17 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>Blocker Settings</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
-  <h2>Block Sites</h2>
-  <label><input type="checkbox" id="tiktok"> TikTok</label><br>
-  <label><input type="checkbox" id="instagram"> Instagram</label><br>
-  <label><input type="checkbox" id="x"> X</label><br>
-  <label><input type="checkbox" id="snapchat"> Snapchat</label><br>
-  <label><input type="checkbox" id="twitch"> Twitch</label><br>
-  <label><input type="checkbox" id="youtube"> Youtube</label><br>
+  
+  <div class="header">
+    <h2>Lock In Settings</h2>
+  </div>
+
+  <div class="site-list">
+    <label><input type="checkbox" id="tiktok"> TikTok</label>
+    <label><input type="checkbox" id="instagram"> Instagram</label>
+    <label><input type="checkbox" id="x"> X (Twitter)</label>
+    <label><input type="checkbox" id="snapchat"> Snapchat</label>
+    <label><input type="checkbox" id="twitch"> Twitch</label>
+    <label><input type="checkbox" id="youtube"> Youtube</label>
+  </div>
 
   <hr>
+  
   <div id="stats">Loading stats...</div>
 
   <script src="popup.js"></script>
