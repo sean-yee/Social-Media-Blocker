@@ -60,11 +60,6 @@ async function applyRules() {
   });
 }
 
-// --- NEW ANALYTICS & TIME TRACKING LOGIC ---
-
-// state vars for time tracking
-let activeSite = null;
-let startTime = null;
 
 function getTodayDate() {
   return new Date().toISOString().split('T')[0];
@@ -90,59 +85,5 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
     
     todayData[matchedSite].attempts += 1;
     await chrome.storage.local.set({ [dateKey]: todayData });
-  }
-});
-
-// 2. HELPER TO SAVE TIME WHEN LEAVING A SITE
-async function flushTimeTracking() {
-  if (activeSite && startTime) {
-    const elapsedMs = Date.now() - startTime;
-    const dateKey = `analytics_${getTodayDate()}`;
-    const localData = await chrome.storage.local.get(dateKey);
-    
-    // THIS IS WHERE THE DATA STRUCTURE IS UPDATED
-    let todayData = localData[dateKey] || {};
-    if (!todayData[activeSite]) todayData[activeSite] = { attempts: 0, timeSpent: 0 };
-    
-    todayData[activeSite].timeSpent += elapsedMs;
-    await chrome.storage.local.set({ [dateKey]: todayData });
-  }
-  activeSite = null;
-  startTime = null;
-}
-
-// 3. TRACK ACTIVE TABS FOR UNBLOCKED SITES
-async function handleTabChange(tabId) {
-  const tab = await chrome.tabs.get(tabId).catch(() => null);
-  if (!tab || !tab.url) return;
-
-  const url = new URL(tab.url);
-  const sites = ["tiktok", "instagram", "x", "twitter", "snapchat", "twitch", "youtube"];
-  let matchedSite = sites.find(site => url.hostname.includes(site));
-  
-  const prefs = await chrome.storage.sync.get(null);
-
-  if (matchedSite && !prefs[matchedSite]) {
-    if (activeSite !== matchedSite) {
-      await flushTimeTracking(); 
-      activeSite = matchedSite;
-      startTime = Date.now(); 
-    }
-  } else {
-    await flushTimeTracking(); 
-  }
-}
-
-// Listeners to trigger the time tracking
-chrome.tabs.onActivated.addListener(activeInfo => handleTabChange(activeInfo.tabId));
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.url) handleTabChange(tabId);
-});
-chrome.windows.onFocusChanged.addListener(async (windowId) => {
-  if (windowId === chrome.windows.WINDOW_ID_NONE) {
-    await flushTimeTracking(); 
-  } else {
-    const [tab] = await chrome.tabs.query({ active: true, windowId: windowId });
-    if (tab) handleTabChange(tab.id);
   }
 });

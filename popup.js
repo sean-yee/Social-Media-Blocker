@@ -41,10 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Build the HTML list dynamically based on the stored data structure
     let html = "<h3>Today's Focus Stats</h3><ul>";
     for (const [site, stats] of Object.entries(todayData)) {
-      const minutes = Math.floor(stats.timeSpent / 60000); 
+      // We removed the minutes calculation here
       html += `<li><b>${site.charAt(0).toUpperCase() + site.slice(1)}</b>: <br> 
-               ${stats.attempts} blocked attempts <br> 
-               ${minutes} mins spent scrolling</li><br>`;
+               ${stats.attempts} blocked attempts</li><br>`;
     }
     html += "</ul>";
     statsDiv.innerHTML = html;
