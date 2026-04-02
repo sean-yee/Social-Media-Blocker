@@ -5,13 +5,7 @@
   "manifest_version": 3,
   "permissions": ["declarativeNetRequest", "storage", "scripting", "webNavigation"],
   "host_permissions": [
-    "*://*.tiktok.com/*",
-    "*://*.instagram.com/*",
-    "*://*.twitter.com/*",
-    "*://*.x.com/*",
-    "*://*.twitch.tv/*",
-    "*://*.snapchat.com/*",
-    "*://*.youtube.com/*"
+    "<all_urls>"
   ],
   "background": {
     "service_worker": "background.js"
