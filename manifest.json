@@ -3,7 +3,7 @@
   "description": "Blocks distracting social media sites. Allows customization for what sites get blocked.",
   "version": "2.0",
   "manifest_version": 3,
-  "permissions": ["declarativeNetRequest", "declarativeNetRequestWithHostAccess", "tabs", "storage"],
+  "permissions": ["declarativeNetRequest", "storage", "tabs", "activeTab", "scripting", "webNavigation"],
   "host_permissions": [
     "*://*.tiktok.com/*",
     "*://*.instagram.com/*",
